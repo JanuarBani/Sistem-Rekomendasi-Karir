@@ -31,19 +31,14 @@ class PredictionPresenter {
             );
 
             return {
-                success: true,
-                data: {
-                    predictionId,
-                    result: predictionResult
-                }
+                predictionId,
+                recommendedProfessions: predictionResult.recommendedProfessions,
+                confidence: predictionResult.confidence
             };
 
         } catch (error) {
             console.error('Prediction error:', error);
-            return {
-                success: false,
-                error: error.message
-            };
+            throw error;
         }
     }
 

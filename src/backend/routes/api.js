@@ -33,10 +33,23 @@ module.exports = [
         method: 'POST',
         path: '/api/predictions',
         handler: async (request, h) => {
-            const userId = request.payload.userId;
-            const inputData = request.payload.inputData;
-            const result = await predictionPresenter.makePrediction(inputData, userId);
-            return h.response(result).code(result.success ? 201 : 400);
+            try {
+                const { userId, inputData } = request.payload;
+                if (!userId || !inputData) {
+                    return h.response({
+                        success: false,
+                        error: 'Missing required fields: userId or inputData'
+                    }).code(400);
+                }
+                const result = await predictionPresenter.makePrediction(inputData, userId);
+                return h.response(result).code(200);
+            } catch (error) {
+                console.error('Prediction error:', error);
+                return h.response({
+                    success: false,
+                    error: error.message || 'Internal server error'
+                }).code(500);
+            }
         }
     },
     {

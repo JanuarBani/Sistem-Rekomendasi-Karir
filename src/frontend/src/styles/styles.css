@@ -1,0 +1,136 @@
+/* Progress Bar Styles */
+.progress-bar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  counter-reset: step;
+  margin: 2rem 0 4rem;
+}
+
+.progress-bar::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 100%;
+  background-color: #e5e7eb;
+  z-index: 0;
+}
+
+.progress-step {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #e5e7eb;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  color: #4b5563;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.progress-step.active {
+  background-color: #2563eb;
+  color: white;
+}
+
+/* Form Step Transitions */
+.form-step {
+  display: none;
+  transform-origin: top;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.form-step.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card Hover Effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #2563eb;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Offline Notification Animation */
+#offline-notification {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Dark Mode Transition */
+.dark-mode-transition {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Responsive Navigation */
+@media (max-width: 1023px) {
+  #navbar-default {
+    position: fixed;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    background-color: #2563eb;
+    padding: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transform-origin: top;
+    animation: slideDown 0.3s ease-out;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
