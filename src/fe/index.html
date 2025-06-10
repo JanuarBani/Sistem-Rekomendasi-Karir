@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CityCare App</title>
+
+    <!-- Meta -->
+    <meta name="description" content="Aplikasi pelaporan dan manajemen cerita publik." />
+    <meta name="theme-color" content="#2563eb" />
+
+    <!-- Icons & Manifest -->
+    <link rel="icon" href="/favicon.png" />
+    <link rel="manifest" href="/app.webmanifest" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#2563eb',
+              secondary: '#1d4ed8',
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Knewave&display=swap" rel="stylesheet" />
+
+    <!-- App Script -->
+    <script type="module" src="/src/scripts/index.js"></script>
+  </head>
+
+  <body
+    class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300"
+  >
+    <!-- Skip Link -->
+    <a
+      href="#main-content"
+      id="skip-link"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-primary focus:text-white focus:px-4 focus:py-2 rounded z-50"
+    >
+      Menuju konten utama
+    </a>
+
+    <!-- Header -->
+    <header class="bg-primary text-white shadow-md sticky top-0 z-40">
+      <div class="container mx-auto flex items-center justify-between p-4 md:px-8">
+        <!-- Logo -->
+        <a
+          href="#/"
+          class="neon-text group text-2xl font-extrabold tracking-wide text-gray-900 dark:text-gray-100 hover:text-blue-500 dark:hover:text-blue-300 transition focus:outline-none focus:ring-2 focus:ring-blue-300 rounded"
+        >
+          ReKar
+        </a>
+
+        <button
+          id="theme-toggle"
+          type="button"
+          aria-label="Toggle dark mode"
+          class="text-xl bg-white dark:bg-gray-700 text-gray-800 dark:text-white px-3 py-2 rounded-md shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 flex items-center justify-center gap-2"
+        >
+          <!-- Sun icon (untuk mode terang) -->
+          <svg
+            id="icon-sun"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m15.36 5.36l-.7-.7M6.34 6.34l-.7-.7m12.02 12.02l-.7-.7M6.34 17.66l-.7-.7M12 7a5 5 0 100 10 5 5 0 000-10z"
+            />
+          </svg>
+
+          <!-- Moon icon (untuk mode gelap) -->
+          <svg
+            id="icon-moon"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 hidden"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"
+            />
+          </svg>
+        </button>
+
+        <!-- Hamburger (mobile only) -->
+        <div class="lg:hidden flex items-center gap-4">
+          <button
+            id="drawer-button"
+            type="button"
+            aria-controls="mobile-drawer"
+            aria-expanded="false"
+            aria-label="Buka menu utama"
+            class="text-white hover:text-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg p-2 transition"
+          >
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav id="main-navbar" aria-label="Main navigation">
+          <!-- isi navbar -->
+        </nav>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <nav
+      id="mobile-drawer"
+      class="fixed inset-y-0 left-0 bg-primary text-white w-64 p-6 transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden z-50"
+      aria-label="Mobile Navigation"
+    >
+      <button
+        id="drawer-close"
+        type="button"
+        aria-label="Tutup menu"
+        class="mb-6 text-white hover:text-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+      >
+        <i class="fas fa-times text-2xl"></i>
+      </button>
+      <div id="mobile-links"></div>
+    </nav>
+
+    <!-- Auth Drawer -->
+    <nav
+      id="auth-navbar"
+      class="fixed inset-y-0 left-0 bg-primary text-white w-64 p-6 transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden z-50"
+      aria-label="Auth Navigation"
+    >
+      <button
+        id="drawer-close-auth"
+        type="button"
+        aria-label="Tutup menu"
+        class="mb-8 text-white hover:text-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+      >
+        <i class="fas fa-times text-3xl"></i>
+      </button>
+      <ul class="flex flex-col gap-4">
+        <li>
+          <a
+            href="#/login"
+            class="block py-2 px-4 rounded hover:bg-yellow-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-yellow-300"
+          >
+            <i class="fas fa-sign-in-alt mr-2"></i> Login
+          </a>
+        </li>
+        <li>
+          <a
+            href="#/register"
+            class="block py-2 px-4 rounded hover:bg-yellow-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-yellow-300"
+          >
+            <i class="fas fa-user-plus mr-2"></i> Register
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Drawer Overlay -->
+    <div id="drawer-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40"></div>
+
+    <!-- Main Content -->
+    <main id="main-content" class="container mx-auto my-8 px-4 md:px-8">
+      <h1 class="text-3xl font-bold mb-6">Your Stories</h1>
+      <div id="story-container" class="flex space-x-4 overflow-x-auto pb-4"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 dark:bg-gray-800 py-8 mt-auto">
+      <div
+        class="container mx-auto px-4 md:px-8 text-center text-gray-600 dark:text-gray-400 text-sm"
+      >
+        &copy; 2025 CityCare. All rights reserved.
+      </div>
+    </footer>
+
+    <!-- Offline Notification -->
+    <div
+      id="offline-notification"
+      class="hidden fixed bottom-4 right-4 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg z-50"
+    >
+      Anda sedang offline
+    </div>
+  </body>
+</html>

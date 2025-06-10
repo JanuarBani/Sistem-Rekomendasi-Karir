@@ -13,7 +13,7 @@ export async function predictCareer(formData) {
       },
       body: JSON.stringify({
         inputData: formData,
-        userId: 1 // Temporary userId for testing
+        userId: 1 
       })
     });
 

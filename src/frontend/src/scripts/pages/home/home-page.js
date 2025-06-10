@@ -5,11 +5,11 @@ export default class HomePage {
 
   async render() {
     return `
-<div id="career-major-section" class="w-full flex flex-col space-y-10 px-6 md:px-12 lg:px-20 py-16">
+<div id="career-major-section" class="neon-box w-full flex flex-col space-y-10 px-6 md:px-12 lg:px-20 py-16">
 
   <!-- Section: Intro Career -->
   <section aria-labelledby="career-heading"
-           class="bg-gradient-to-br from-white via-blue-50 to-blue-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 py-16 px-6 md:px-16 rounded-3xl transition-colors duration-500"
+           class="neon-box bg-gradient-to-br from-white via-blue-50 to-blue-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 py-16 px-6 md:px-16 rounded-3xl transition-colors duration-500"
            style="box-shadow: 0 0 20px rgba(37,99,235,0.4), 0 0 40px rgba(37,99,235,0.3);">
     <div class="flex flex-col-reverse md:flex-row items-center gap-12">
       

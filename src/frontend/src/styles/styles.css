@@ -1,4 +1,85 @@
-/* Progress Bar Styles */
+@import "tailwindcss";
+
+/* Neon Box (Light: lebih lembut) */
+.neon-box {
+  box-shadow: 0 0 4px #93c5fd, 0 0 8px #60a5fa, 0 0 12px #3b82f6; /* redup */
+  border: 1px solid #60a5fa;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Neon Box (Dark) */
+.dark .neon-box {
+  background-color: #1e293b;
+  border-color: #3b82f6;
+  box-shadow: 0 0 10px #3b82f6, 0 0 20px #2563eb, 0 0 30px #1e40af;
+}
+
+/* Neon Button (Light: lebih lembut) */
+.neon-btn {
+  background-color: #2563eb;
+  color: white;
+  box-shadow: 0 0 3px #93c5fd, 0 0 6px #60a5fa, 0 0 10px #3b82f6;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.neon-btn:hover {
+  background-color: #1e40af;
+  box-shadow: 0 0 6px #3b82f6, 0 0 12px #2563eb, 0 0 24px #1e40af;
+}
+
+/* Neon Input & Select (Light: lebih lembut) */
+.neon-input,
+.neon-select {
+  border: 1px solid #60a5fa;
+  background-color: white;
+  color: #111827;
+  box-shadow: 0 0 3px #60a5fa;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.neon-input:focus,
+.neon-select:focus {
+  outline: none;
+  background-color: #e0e7ff;
+  border-color: #2563eb;
+  box-shadow: 0 0 6px #3b82f6, 0 0 12px #2563eb;
+}
+
+/* Neon Input & Select (Dark) */
+.dark .neon-input,
+.dark .neon-select {
+  background-color: #374151;
+  color: #d1d5db;
+  border: 1px solid #2563eb;
+  box-shadow: 0 0 5px #2563eb;
+}
+
+.dark .neon-input:focus,
+.dark .neon-select:focus {
+  background-color: #1e40af;
+  color: white;
+  box-shadow: 0 0 10px #3b82f6, 0 0 20px #2563eb;
+}
+
+/* Neon Tooltip */
+.neon-tooltip {
+  box-shadow: 0 0 5px #60a5fa;
+  border: 1px solid #60a5fa;
+  background-color: white;
+  color: #111827;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.dark .neon-tooltip {
+  background-color: #0f172a;
+  color: #f1f5f9;
+  box-shadow: 0 0 10px #2563eb;
+  border-color: #2563eb;
+}
+
 .progress-bar {
   position: relative;
   display: flex;
@@ -8,7 +89,7 @@
 }
 
 .progress-bar::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -37,7 +118,6 @@
   color: white;
 }
 
-/* Form Step Transitions */
 .form-step {
   display: none;
   transform-origin: top;
@@ -59,7 +139,6 @@
   }
 }
 
-/* Card Hover Effects */
 .card-hover {
   transition: all 0.3s ease;
 }
@@ -69,7 +148,6 @@
   box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
 }
 
-/* Loading Spinner */
 .loading-spinner {
   width: 50px;
   height: 50px;
@@ -88,7 +166,6 @@
   }
 }
 
-/* Offline Notification Animation */
 #offline-notification {
   animation: slideIn 0.3s ease-out;
 }
@@ -104,12 +181,10 @@
   }
 }
 
-/* Dark Mode Transition */
 .dark-mode-transition {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Responsive Navigation */
 @media (max-width: 1023px) {
   #navbar-default {
     position: fixed;
@@ -134,3 +209,40 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 1023px) {
+  .mobile-nav {
+    position: absolute;
+    top: 4.5rem; /* Sesuaikan tinggi header */
+    left: 1rem;
+    right: 1rem;
+    background-color: #f3f4f6; /* Tailwind's gray-100 */
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+    padding: 0.5rem;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .dark .mobile-nav {
+    background-color: #1f2937; /* Tailwind's gray-800 */
+  }
+
+  .mobile-nav a {
+    color: #1f2937; /* gray-800 */
+  }
+
+  .dark .mobile-nav a {
+    color: #f9fafb; /* near-white */
+  }
+
+  .mobile-nav a:hover {
+    background-color: #e5e7eb; /* gray-200 */
+  }
+
+  .dark .mobile-nav a:hover {
+    background-color: #374151; /* gray-700 */
+  }
+}
+
+
