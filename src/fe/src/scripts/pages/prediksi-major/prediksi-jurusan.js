@@ -86,30 +86,30 @@ export default class JurusanPage {
 }
 
 function setupTKAInputHandler() {
-  const kelompokSelect = document.getElementById("kelompok_ujian");
-  const tkaSection = document.getElementById("tkaSection");
+  const kelompokSelect = document.getElementById('kelompok_ujian');
+  const tkaSection = document.getElementById('tkaSection');
 
   const saintekFields = [
-    { name: "mat", placeholder: "Matematika" },
-    { name: "fis", placeholder: "Fisika" },
-    { name: "kim", placeholder: "Kimia" },
-    { name: "bio", placeholder: "Biologi" },
+    { name: 'mat', placeholder: 'Matematika' },
+    { name: 'fis', placeholder: 'Fisika' },
+    { name: 'kim', placeholder: 'Kimia' },
+    { name: 'bio', placeholder: 'Biologi' },
   ];
 
   const soshumFields = [
-    { name: "mat", placeholder: "Matematika" },
-    { name: "geo", placeholder: "Geografi" },
-    { name: "sej", placeholder: "Sejarah" },
-    { name: "sos", placeholder: "Sosiologi" },
-    { name: "eko", placeholder: "Ekonomi" },
+    { name: 'mat', placeholder: 'Matematika' },
+    { name: 'geo', placeholder: 'Geografi' },
+    { name: 'sej', placeholder: 'Sejarah' },
+    { name: 'sos', placeholder: 'Sosiologi' },
+    { name: 'eko', placeholder: 'Ekonomi' },
   ];
 
-  kelompokSelect.addEventListener("change", () => {
+  kelompokSelect.addEventListener('change', () => {
     const selected = kelompokSelect.value;
     let fields = [];
 
-    if (selected === "saintek") fields = saintekFields;
-    else if (selected === "soshum") fields = soshumFields;
+    if (selected === 'saintek') fields = saintekFields;
+    else if (selected === 'soshum') fields = soshumFields;
 
     tkaSection.innerHTML = fields
       .map(
@@ -119,82 +119,81 @@ function setupTKAInputHandler() {
             <input type="number" name="${f.name}" placeholder="${f.placeholder}" required
               class="neon-input p-2 rounded w-full">
           </div>
-        `
+        `,
       )
-      .join("");
+      .join('');
   });
 }
 
-
 function setupFormSubmission() {
-  const form = document.getElementById("predictionForm");
-  const resultPage = document.getElementById("resultPage");
-  const resultContainer = document.getElementById("predictionResult");
-  const resetButton = document.getElementById("resetFormButton");
+  const form = document.getElementById('predictionForm');
+  const resultPage = document.getElementById('resultPage');
+  const resultContainer = document.getElementById('predictionResult');
+  const resetButton = document.getElementById('resetFormButton');
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = new FormData(form);
 
-    const nama = formData.get("nama");
-    const kelompok = formData.get("kelompok_ujian");
+    const nama = formData.get('nama');
+    const kelompok = formData.get('kelompok_ujian');
 
     const tps = {
-      kpu: formData.get("kpu"),
-      kua: formData.get("kua"),
-      ppu: formData.get("ppu"),
-      kmb: formData.get("kmb"),
+      kpu: formData.get('kpu'),
+      kua: formData.get('kua'),
+      ppu: formData.get('ppu'),
+      kmb: formData.get('kmb'),
     };
 
     let tka = {};
-    if (kelompok === "saintek") {
+    if (kelompok === 'saintek') {
       tka = {
-        mat: formData.get("mat"),
-        fis: formData.get("fis"),
-        kim: formData.get("kim"),
-        bio: formData.get("bio"),
+        mat: formData.get('mat'),
+        fis: formData.get('fis'),
+        kim: formData.get('kim'),
+        bio: formData.get('bio'),
       };
     } else {
       tka = {
-        mat: formData.get("mat"),
-        geo: formData.get("geo"),
-        sej: formData.get("sej"),
-        sos: formData.get("sos"),
-        eko: formData.get("eko"),
+        mat: formData.get('mat'),
+        geo: formData.get('geo'),
+        sej: formData.get('sej'),
+        sos: formData.get('sos'),
+        eko: formData.get('eko'),
       };
     }
 
     // Logika prediksi dummy
-    let jurusan = "Belum Ditentukan";
-    if (kelompok === "saintek") {
-      if (tka.mat > 80 && tka.fis > 75) jurusan = "Teknik / Sains";
-      else jurusan = "Kedokteran / Biologi";
+    let jurusan = 'Belum Ditentukan';
+    if (kelompok === 'saintek') {
+      if (tka.mat > 80 && tka.fis > 75) jurusan = 'Teknik / Sains';
+      else jurusan = 'Kedokteran / Biologi';
     } else {
-      if (tka.eko > 80 && tka.mat > 75) jurusan = "Ekonomi / Manajemen";
-      else jurusan = "Ilmu Sosial / Politik";
+      if (tka.eko > 80 && tka.mat > 75) jurusan = 'Ekonomi / Manajemen';
+      else jurusan = 'Ilmu Sosial / Politik';
     }
 
     resultContainer.innerHTML = `
       <p>Nama: <strong>${nama}</strong></p>
       <p>Kelompok Ujian: <strong>${kelompok}</strong></p>
       <p><strong>Nilai TPS:</strong> KPU: ${tps.kpu}, Kua: ${tps.kua}, PPU: ${
-      tps.ppu
-    }, KMB: ${tps.kmb}</p>
+        tps.ppu
+      }, KMB: ${tps.kmb}</p>
       <p><strong>Nilai TKA:</strong> ${Object.entries(tka)
         .map(([k, v]) => `${k.toUpperCase()}: ${v}`)
-        .join(", ")}</p>
+        .join(', ')}</p>
       <hr class="my-3"/>
       <p class="text-lg font-bold text-blue-700">Rekomendasi Jurusan: ${jurusan}</p>
     `;
 
-    form.classList.add("hidden");
-    resultPage.classList.remove("hidden");
+    form.classList.add('hidden');
+    resultPage.classList.remove('hidden');
   });
 
-  resetButton.addEventListener("click", () => {
+  resetButton.addEventListener('click', () => {
     form.reset();
-    document.getElementById("tkaSection").innerHTML = "";
-    form.classList.remove("hidden");
-    resultPage.classList.add("hidden");
+    document.getElementById('tkaSection').innerHTML = '';
+    form.classList.remove('hidden');
+    resultPage.classList.add('hidden');
   });
 }
