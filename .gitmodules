@@ -1,0 +1,6 @@
+[submodule "src/fe"]
+	path = src/fe
+	url = https://github.com/JanuarBani/NexaPath.git
+[submodule "src/fetch-api"]
+	path = src/fetch-api
+	url = https://github.com/JanuarBani/hapi-backend.git
