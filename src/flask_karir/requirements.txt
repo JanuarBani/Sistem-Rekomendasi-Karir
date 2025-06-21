@@ -1,0 +1,7 @@
+Flask==2.3.2 # Atau versi terbaru yang kompatibel
+tensorflow==2.16.1 # Sesuaikan dengan versi TensorFlow Anda
+numpy==1.26.4 # Sesuaikan dengan versi NumPy Anda
+pandas==2.2.2 # Sesuaikan dengan versi Pandas Anda
+scikit-learn==1.4.2 # Sesuaikan dengan versi Scikit-learn Anda (untuk MinMaxScaler)
+joblib==1.4.0 # Sesuaikan dengan versi Joblib Anda
+gunicorn # Jika Anda berencana mendeploy dengan Gunicorn
